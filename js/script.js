@@ -35,5 +35,29 @@ $(document).ready(function () {
         // Print in HTML
         list.append(item);
     }
+
+    // Add Item by Input
+    input.keyup(function(event){
+        //Press Enter
+        if( event.which === 13){
+            var text = $(this).val().trim();
+
+            // If is not empty
+            if(text !== ''){
+                // Template
+                var item = template.clone();
+    
+                // Populate Template
+                item.children('.text').text(text);
+    
+                // Print in HTML
+                list.append(item);
+
+                // Reset
+                $(this).val('');
+            }
+        }
+    });   
+    
     // End Doc Ready
 });
