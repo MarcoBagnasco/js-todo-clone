@@ -29,16 +29,19 @@ body{
 }
 
 /* Todo List */
-.todo-list li{
+.todo-list .todo-item{
     display: flex;
     justify-content: space-between;
     margin: 10px 0;
     border-bottom: 1px solid #000;
 }
-.todo-list li i{
+.todo-list .todo-item i{
     color: #888;
     cursor: pointer;
 }
-.todo-list li i:hover{
+.todo-list .todo-item i:hover{
     color: #000;
+}
+.todo-list .todo-item .text.completed{
+    text-decoration: line-through;
 }

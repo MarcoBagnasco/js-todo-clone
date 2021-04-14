@@ -63,5 +63,11 @@ $(document).ready(function () {
     $('body').on('click', '.todo-list .todo-item i', function(){
         $(this).parent().remove();
     });
+
+    // Check Items 
+    $('body').on('click', '.todo-list .todo-item .text', function(){
+        $(this).toggleClass('completed');
+    });
+
     // End Doc Ready
 });
