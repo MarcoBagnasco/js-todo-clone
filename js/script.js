@@ -16,7 +16,7 @@ $(document).ready(function () {
         },
         {
             text: 'Fare la lavatrice',
-            completed: false,
+            completed: true,
         },
         {
             text: 'Chiamare idraulico',
@@ -31,6 +31,11 @@ $(document).ready(function () {
 
         // Populate Template
         item.children('.text').text(items[i].text);
+
+        // Check completed
+        if(items[i].completed){
+            item.children('.text').addClass('completed');
+        }
 
         // Print in HTML
         list.append(item);
