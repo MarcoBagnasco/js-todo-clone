@@ -58,6 +58,10 @@ $(document).ready(function () {
             }
         }
     });   
-    
+
+    // Remove Items
+    $('body').on('click', '.todo-list .todo-item i', function(){
+        $(this).parent().remove();
+    });
     // End Doc Ready
 });
