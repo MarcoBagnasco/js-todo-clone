@@ -77,10 +77,12 @@ $(document).ready(function () {
         } else {
             // Show Modal
             modal.addClass('active');
+            modal.find('.btn-yes').off('click'); // Remove event handler 
             modal.find('.btn-yes').click(function(){
                 trash.parent().remove();
                 modal.removeClass('active');
             });
+            modal.find('.btn-no').off('click'); // Remove event handler
             modal.find('.btn-no').click(function(){
                 modal.removeClass('active');
             });
