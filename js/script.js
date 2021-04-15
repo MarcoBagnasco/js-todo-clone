@@ -7,6 +7,7 @@ $(document).ready(function () {
     var input = $('.add');
     var list = $('.todo-list');
     var template = $('#template .todo-item');
+    var modal = $('.modal');
 
     // Object's Array
     var items = [
@@ -49,6 +50,9 @@ $(document).ready(function () {
 
             // If is not empty
             if(text !== ''){
+                // First letter uppercase
+                text = text[0].toUpperCase() + text.slice(1);
+
                 // Template
                 var item = template.clone();
     
@@ -65,13 +69,47 @@ $(document).ready(function () {
     });   
 
     // Remove Items
-    $('body').on('click', '.todo-list .todo-item i', function(){
-        $(this).parent().remove();
+    $('body').on('click', '.todo-list .todo-item .delete', function(){
+        var trash = $(this);
+        // Check Completed
+        if( trash.prevAll('.text').hasClass('completed')){
+            trash.parent().remove();
+        } else {
+            // Show Modal
+            modal.addClass('active');
+            modal.find('.btn-yes').click(function(){
+                trash.parent().remove();
+                modal.removeClass('active');
+            });
+            modal.find('.btn-no').click(function(){
+                modal.removeClass('active');
+            });
+        }
     });
 
-    // Check Items 
+    // Check Items and Remove Important
     $('body').on('click', '.todo-list .todo-item .text', function(){
-        $(this).toggleClass('completed');
+        $(this).toggleClass('completed').removeClass('important');
+        $(this).next('.important').removeClass('active');
+    });
+
+    // Important
+    $('body').on('click', '.todo-list .todo-item .important', function(){
+        if(! $(this).prev('.text').hasClass('completed')){
+            $(this).toggleClass('active');
+            $(this).prev('.text').toggleClass('important');
+        }
+    });
+
+    // Remove all completed
+    $('.btn-del').click(function(){
+        var currentList = $('.todo-item');
+   
+        for(var i = 0; i < currentList.length; i++){
+            if($(currentList[i]).children('.text').hasClass('completed')){
+                currentList[i].remove();
+            }
+        }
     });
 
     // End Doc Ready
